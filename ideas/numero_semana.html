@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semana</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <img src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="Alternative text" width="200" height="160">
+    <p>Texto de la imagen</p>
+  </body>
+
+  <script>
+    // Crear un nuevo objeto Date para la fecha actual
+    var fechaActual = new Date();
+
+    // Obtener el número de semana del año
+    var numeroSemana = getWeekNumber(fechaActual);
+
+    // Imprimir el número de semana en la consola o donde lo necesites
+    alert("La semana anterior del año es: " + numeroSemana);
+
+    // Función para obtener el número de semana del año
+    function getWeekNumber(date) {
+      // Copiar la fecha proporcionada para no modificarla
+      var copiedDate = new Date(date.getTime());
+
+      // Configurar la fecha al primer día del año
+      copiedDate.setMonth(0, 1);
+
+      // Obtener el día de la semana del primer día del año
+      var firstDay = copiedDate.getDay();
+
+      // Si el primer día de la semana es domingo (0), cambiarlo a 7
+      if (firstDay === 0) {
+        firstDay = 7;
+      }
+
+      // Avanzar al primer jueves del año
+      copiedDate.setDate(1 + ((4 - firstDay + 7) % 7));
+
+      // Calcular el número de semana
+      var weekNumber = Math.ceil(((date - copiedDate) / 86400000 + 1) / 7);
+
+      return weekNumber;
+    }
+  </script>
+</html>
